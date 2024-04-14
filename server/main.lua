@@ -2388,18 +2388,8 @@ QBCore.Commands.Add("giveitem", "Give An Item (Admin Only)", {{name="id", help="
 			if itemData then
 				-- check iteminfo
 				local info = {}
-				if itemData["name"] == "id_card" then
-					info.citizenid = Player.PlayerData.citizenid
-					info.firstname = Player.PlayerData.charinfo.firstname
-					info.lastname = Player.PlayerData.charinfo.lastname
-					info.birthdate = Player.PlayerData.charinfo.birthdate
-					info.gender = Player.PlayerData.charinfo.gender
-					info.nationality = Player.PlayerData.charinfo.nationality
-				elseif itemData["name"] == "driver_license" then
-					info.firstname = Player.PlayerData.charinfo.firstname
-					info.lastname = Player.PlayerData.charinfo.lastname
-					info.birthdate = Player.PlayerData.charinfo.birthdate
-					info.type = "Class C Driver License"
+				if itemData['name'] == 'id_card' or itemData['name'] == 'driver_license' or itemData['name'] == 'weaponlicense' or itemData['name'] == 'lawyerpass' then
+					exports.bl_idcard:createLicense(source, itemData['name'])
 				elseif itemData["type"] == "weapon" then
 					amount = 1
 					info.serie = tostring(QBCore.Shared.RandomInt(2) .. QBCore.Shared.RandomStr(3) .. QBCore.Shared.RandomInt(1) .. QBCore.Shared.RandomStr(2) .. QBCore.Shared.RandomInt(3) .. QBCore.Shared.RandomStr(4))
@@ -2469,7 +2459,7 @@ end, 'admin')
 --     end
 -- end)
 
-CreateUsableItem("driver_license", function(source, item)
+--[[ CreateUsableItem("driver_license", function(source, item)
 	local playerPed = GetPlayerPed(source)
 	local playerCoords = GetEntityCoords(playerPed)
 	local players = QBCore.Functions.GetPlayers()
@@ -2519,7 +2509,7 @@ CreateUsableItem("id_card", function(source, item)
 			)
 		end
 	end
-end)
+end) ]]
 
 
 CreateThread(function()

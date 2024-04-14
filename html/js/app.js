@@ -457,7 +457,7 @@ function FormatItemInfo(itemData, dom) {
     element.css('left', leftOffset);
 
     if (itemData != null && itemData.info != "") {
-        if (itemData.name == "id_card") {
+        /* if (itemData.name == "id_card") {
             var gender = "Man";
             if (itemData.info.gender == 1) {
                 gender = "Woman";
@@ -516,7 +516,7 @@ function FormatItemInfo(itemData, dom) {
                 itemData.info.citizenid +
                 "</span></p>"
             );
-        } else if (itemData.name == "harness") {
+        } */ if (itemData.name == "harness") {
             $(".item-info-title").html("<p>" + itemData.label + "</p>");
             $(".item-info-description").html(
                 "<p>" + itemData.info.uses + " uses left.</p>"
